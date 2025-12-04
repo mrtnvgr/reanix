@@ -20,6 +20,8 @@ let
     # TODO: remove this workaround when TODOs will be implemented
     cat ${pkgs.writeText "reaper-kb" cfg.config."reaper-kb.ini"} > ~/.config/REAPER/reaper-kb.ini
 
+    ${cfg.hooks.preRun}
+
     ${pkgs.reaper}/bin/reaper $@
   '';
 in {
@@ -34,6 +36,13 @@ in {
     config = lib.mkOption {
       type = with lib.types; attrsOf lines;
       default = { };
+    };
+
+    hooks = {
+      preRun = lib.mkOption {
+        type = lib.types.lines;
+        default = "";
+      };
     };
   };
 
