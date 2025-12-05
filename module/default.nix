@@ -22,11 +22,16 @@ let
 
     ${cfg.hooks.preRun}
 
-    ${pkgs.reaper}/bin/reaper $@
+    ${cfg.package}/bin/reaper $@
   '';
 in {
   options.programs.reanix = {
     enable = lib.mkEnableOption "ReaNix";
+
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.reaper;
+    };
 
     defaults = lib.mkOption {
       type = lib.types.bool;
