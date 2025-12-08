@@ -1,8 +1,8 @@
 { config, lib, ... }: let
   home = config.home.homeDirectory;
 
-  media_path = "${home}/.local/REAPER/Media";
-  peaks_path = "${home}/.local/REAPER/Peaks";
+  media_path = "${home}/.cache/REAPER/Media";
+  peaks_path = "${home}/.cache/REAPER/Peaks";
 
   cfg = config.programs.reanix;
 in {
