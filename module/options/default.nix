@@ -14,5 +14,6 @@ let
 in {
   imports = map (x: mk x) [
     ./viewadvance.nix
+    ./defvzoom.nix
   ];
 }
