@@ -57,6 +57,7 @@ in {
     ./templates
     ./defaults
     ./colors.nix
+    ./options
   ];
 
   config = lib.mkIf cfg.enable {
