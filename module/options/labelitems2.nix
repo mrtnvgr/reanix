@@ -10,12 +10,13 @@
     cfg.options.show_labels_for_items_when_item_edges_are_not_visible
     cfg.options.display_media_item_pitch_playrate_if_set
     cfg.options.draw_labels_above_the_item.enable
-    cfg.options.display_media_item_gain_if_set
-    true # TODO: except... (outdated docs?)
+    (!cfg.options.display_media_item_gain_if_set)
   ] ++ stillImageThumbnailDisplayMode ++ [
-    true # not used
+    false # ???
+    true # ???
     cfg.options.draw_selection_indicator_on_items
   ]);
+  # 'xxxxxyyy01'
 
   sitdmAliases = {
     "Center/tile image" = [ false false false ];
