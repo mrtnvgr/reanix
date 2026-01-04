@@ -2,7 +2,6 @@
 let
   mkEnabledOption = x: lib.mkEnableOption x // { default = true; };
 
-  # TODO: the err is that the last char is ignored if it's "0"
   # TODO: mkBitfield -> binToInt?
   mkBitfield = list:
     builtins.foldl' (acc: x:
@@ -17,6 +16,7 @@ in {
   imports = map (x: mk x) [
     ./viewadvance.nix
     ./labelitems2.nix
+    ./itemicons.nix
   ] ++ [
     ./defvzoom.nix
   ];

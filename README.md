@@ -27,3 +27,6 @@ home-manager.users.user = {
 ```
 
 </details>
+
+Special thanks:
+https://mespotin.uber.space/Ultraschall/Reaper_Config_Variables.html
