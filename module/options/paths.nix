@@ -17,12 +17,12 @@ in {
 
   config = lib.mkIf cfg.enable {
     systemd.user.tmpfiles.rules = let
-      mkDir = x: lib.optionalString (x != null) "d ${x}";
-    in [
-      (mkDir paths.projects)
-      (mkDir paths.media)
-      (mkDir paths.peaks)
-    ];
+      mkDir = x: "d ${x}";
+    in map mkDir (lib.filter (x: x != null) [
+      paths.projects
+      paths.media
+      paths.peaks
+    ]);
 
     programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
       ${lib.optionalString (paths.projects != null) ''
