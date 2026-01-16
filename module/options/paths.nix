@@ -5,7 +5,7 @@ in {
   options.programs.reanix.options = {
     paths = let
       pathOption = lib.mkOption {
-        type = with lib.types; nullOr path;
+        type = with lib.types; nullOr singleLineStr;
         default = null;
       };
     in {
@@ -21,7 +21,7 @@ in {
       mkDir = x: "d ${x}";
 
       keepOnlyAbs = x:
-        if (lib.path.hasPrefix "/" x) then
+        if ((builtins.substring 0 1 x) == "/") then
           x
         else
           null;
