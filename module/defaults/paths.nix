@@ -1,30 +1,12 @@
 { config, lib, ... }: let
-  home = config.home.homeDirectory;
-
-  media_path = "${home}/.cache/REAPER/Media";
-  peaks_path = "${home}/.cache/REAPER/Peaks";
-
   cfg = config.programs.reanix;
+  home = config.home.homeDirectory;
 in {
   config = lib.mkIf cfg.defaults {
-    programs.reanix.default_path = {
+    programs.reanix.paths = {
       projects = "${home}/.local/REAPER/Projects";
+      media = "${home}/.cache/REAPER/Media";
+      peaks = "${home}/.cache/REAPER/Peaks";
     };
-
-    systemd.user.tmpfiles.rules = [
-      "d ${media_path}"
-      "d ${peaks_path}"
-    ];
-
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ; Save reapeaks in a cache directory
-      [reaper]
-      altpeaks=5
-      altpeakspath=${peaks_path}
-
-      ; Default media directory for unsaved projects
-      [reaper]
-      defrecpath=${media_path}
-    '';
   };
 }
