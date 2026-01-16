@@ -1,6 +1,6 @@
 { config, lib, ... }: let
   cfg = config.programs.reanix;
-  paths = cfg.paths;
+  paths = cfg.options.paths;
 in {
   options.programs.reanix.options = {
     paths = let
