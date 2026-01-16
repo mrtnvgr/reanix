@@ -17,7 +17,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     systemd.user.tmpfiles.rules = let
-      mkDir = x: lib.optional (x != null) "d ${x}";
+      mkDir = x: lib.optionalString (x != null) "d ${x}";
     in [
       (mkDir paths.projects)
       (mkDir paths.media)
