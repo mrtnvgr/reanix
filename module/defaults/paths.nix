@@ -3,7 +3,7 @@
   home = config.home.homeDirectory;
 in {
   config = lib.mkIf cfg.defaults {
-    programs.reanix.paths = {
+    programs.reanix.options.paths = {
       projects = "${home}/.local/REAPER/Projects";
       media = "${home}/.cache/REAPER/Media";
       peaks = "${home}/.cache/REAPER/Peaks";
