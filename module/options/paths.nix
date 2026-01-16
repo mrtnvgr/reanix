@@ -5,23 +5,34 @@ in {
   options.programs.reanix.options = {
     paths = let
       pathOption = lib.mkOption {
-        type = with lib.types; nullOr singleLineStr;
+        type = with lib.types; nullOr path;
         default = null;
       };
     in {
       projects = pathOption;
       media = pathOption;
       peaks = pathOption;
+      renders = pathOption;
     };
   };
 
   config = lib.mkIf cfg.enable {
     systemd.user.tmpfiles.rules = let
       mkDir = x: "d ${x}";
+
+      keepOnlyAbs = x:
+        if (lib.path.hasPrefix "/" x) then
+          x
+        else
+          null;
     in map mkDir (lib.filter (x: x != null) [
       paths.projects
       paths.media
       paths.peaks
+
+      # If render path is relative, it's appended
+      # to the current project path.
+      (keepOnlyAbs paths.renders)
     ]);
 
     programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
