@@ -53,6 +53,11 @@ in {
         altpeaks=5
         altpeakspath=${paths.peaks}
       ''}
+
+      ${lib.optionalString (paths.renders != null) ''
+        [reaper]
+        defrenderpath=${paths.renders}
+      ''}
     '';
   };
 }
