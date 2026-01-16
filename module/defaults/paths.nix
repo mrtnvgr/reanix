@@ -7,6 +7,10 @@
   cfg = config.programs.reanix;
 in {
   config = lib.mkIf cfg.defaults {
+    programs.reanix.default_path = {
+      projects = "${home}/.local/REAPER/Projects";
+    };
+
     systemd.user.tmpfiles.rules = [
       "d ${media_path}"
       "d ${peaks_path}"

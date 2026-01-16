@@ -19,5 +19,6 @@ in {
     ./itemicons.nix
   ] ++ [
     ./defvzoom.nix
+    ./paths.nix
   ];
 }
