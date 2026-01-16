@@ -14,6 +14,37 @@ let
     ${margesimpson}/bin/margesimpson -t .config/REAPER/${name} ${pkgs.writeText "${name}-patches" value}
   '') (lib.removeAttrs cfg.extraConfig [ "reaper-kb.ini" ]);
 
+  # TODO: https://github.com/NixOS/nixpkgs/issues/416829
+  reaper = pkgs.reaper.overrideAttrs (old: {
+    # modified installPhase which adds libnghttp2 to the LD_LIBRARY_PATH
+    installPhase = ''
+        runHook preInstall
+
+        HOME="$out/share" XDG_DATA_HOME="$out/share" ./install-reaper.sh \
+          --install $out/opt \
+          --integrate-user-desktop
+        rm $out/opt/REAPER/uninstall-reaper.sh
+        wrapProgram $out/opt/REAPER/reaper \
+          --prefix LD_LIBRARY_PATH : "${
+            lib.makeLibraryPath [
+              pkgs.curl
+              pkgs.lame
+              pkgs.libxml2
+              pkgs.ffmpeg
+              pkgs.vlc
+              pkgs.xdotool
+              pkgs.libnghttp2
+              pkgs.stdenv.cc.cc
+            ]
+          }"
+
+        mkdir $out/bin
+        ln -s $out/opt/REAPER/reaper $out/bin/
+
+        runHook postInstall
+      '';
+  });
+
   reaper-wrapped = pkgs.writeScriptBin "reaper" /* bash */ ''
     ${lib.concatStringsSep "\n" configApplyingScript}
 
@@ -30,7 +61,7 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.reaper;
+      default = reaper;
     };
 
     extraConfig = lib.mkOption {
