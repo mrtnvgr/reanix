@@ -18,6 +18,7 @@ in {
     ./labelitems2.nix
     ./itemicons.nix
     ./showpeaks.nix
+    ./envlanes.nix
   ] ++ [
     ./defvzoom.nix
     ./paths.nix
