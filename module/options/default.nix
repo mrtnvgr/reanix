@@ -17,6 +17,7 @@ in {
     ./viewadvance.nix
     ./labelitems2.nix
     ./itemicons.nix
+    ./showpeaks.nix
   ] ++ [
     ./defvzoom.nix
     ./paths.nix
