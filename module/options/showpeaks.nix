@@ -7,7 +7,7 @@
     cfg.options.display_peaks_while_recording
     cfg.options.display_peaks_only_for_selected_tracks
     cfg.options.display_peaks_only_for_audible_items
-    false # undocumented
+    cfg.options.draw_faint_peaks_in_folders
     false
     false
     false
@@ -23,6 +23,7 @@ in {
     display_peaks_while_recording = mkEnabledOption "Display peaks while recording";
     display_peaks_only_for_selected_tracks = lib.mkEnableOption "Displau peaks only for selected tracks";
     display_peaks_only_for_audible_items = lib.mkEnableOption "Only display peaks for tracks and items that are soloed or not muted";
+    draw_faint_peaks_in_folders = mkEnabledOption "Draw faint peaks in folder tracks";
 
     # TODO: peaks display mode
   };
