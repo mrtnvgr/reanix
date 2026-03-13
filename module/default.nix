@@ -89,6 +89,7 @@ in {
     ./defaults
     ./colors.nix
     ./options
+    ./themes
     ./xdg.nix
   ];
 
