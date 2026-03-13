@@ -3,14 +3,14 @@
   cfg = config.programs.reanix;
 
   viewadvance = mkBitfield [
-    cfg.options.autoscroll_during_playback
-    cfg.options.scroll_track_view_while_recording
-    cfg.options.dont_autoscroll_view_when_viewing_other_parts
-    cfg.options.scroll_view_to_edit_cursor_on_stop
-    cfg.options.continuous_scrolling
+    cfg.config .autoscroll_during_playback
+    cfg.config .scroll_track_view_while_recording
+    cfg.config .dont_autoscroll_view_when_viewing_other_parts
+    cfg.config .scroll_view_to_edit_cursor_on_stop
+    cfg.config .continuous_scrolling
   ];
 in {
-  options.programs.reanix.options = {
+  options.programs.reanix.config  = {
     autoscroll_during_playback = lib.mkEnableOption "auto-scroll during playback";
     scroll_track_view_while_recording = mkEnabledOption "scroll track view while recording";
     dont_autoscroll_view_when_viewing_other_parts = lib.mkEnableOption "don't autoscroll view when viewing other parts";

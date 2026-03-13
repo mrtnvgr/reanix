@@ -1,7 +1,7 @@
-{ mkBitfield, mkEnabledOption }:
+{ mkEnabledOption, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
-  opts = cfg.options.item_icons;
+  opts = cfg.config.item_icons;
 
   # itemicons = mkBitfield ([ ]);
 in {
@@ -27,7 +27,7 @@ in {
   # item timebase - off
   # item timebase if overriden for the track or media item - off
 
-  options.programs.reanix.options = {
+  options.programs.reanix.config = {
     item_icons = {
       locked = mkEnabledOption "Locked";
       not_locked = lib.mkEnableOption "Not locked";

@@ -1,8 +1,8 @@
 { config, lib, ... }: let
   cfg = config.programs.reanix;
-  paths = cfg.options.paths;
+  paths = cfg.config.paths;
 in {
-  options.programs.reanix.options = {
+  options.programs.reanix.config = {
     paths = let
       pathOption = lib.mkOption {
         type = with lib.types; nullOr singleLineStr;

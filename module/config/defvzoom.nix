@@ -10,9 +10,9 @@
     "large" = 16;
   };
 
-  defvzoom = unalias aliases cfg.options.default_track_height;
+  defvzoom = unalias aliases cfg.config.default_track_height;
 in {
-  options.programs.reanix.options = {
+  options.programs.reanix.config = {
     default_track_height = lib.mkOption {
       type = with lib.types; either (enum (lib.attrNames aliases)) int;
       default = "medium";

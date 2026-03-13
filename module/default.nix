@@ -88,7 +88,7 @@ in {
     ./templates
     ./defaults
     ./colors.nix
-    ./options
+    ./config
     ./themes
     ./xdg.nix
   ];
