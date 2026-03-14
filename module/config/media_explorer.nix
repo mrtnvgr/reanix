@@ -1,5 +1,6 @@
 { config, lib, ... }: let
   cfg = config.programs.reanix;
+  mex = cfg.config.media_explorer;
 in {
   options.programs.reanix.config.media_explorer = {
     dock = lib.mkOption {
@@ -10,9 +11,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (cfg.media_explorer.dock != null) ''
+      ${lib.optionalString (mex.dock != null) ''
         [reaper_sexplorer]
-        docked=${cfg.media_explorer.dock}
+        docked=${mex.dock}
       ''}
     '';
   };
