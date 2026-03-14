@@ -22,5 +22,7 @@ in {
   ] ++ [
     ./defvzoom.nix
     ./paths.nix
+    ./mixer.nix
+    ./media_explorer.nix
   ];
 }
