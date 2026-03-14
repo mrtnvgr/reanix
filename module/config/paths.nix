@@ -20,18 +20,16 @@ in {
     systemd.user.tmpfiles.rules = let
       mkDir = x: "d ${x}";
 
+      # If render path is relative, it's appended
+      # to the current project path.
       keepOnlyAbs = x:
-        if ((builtins.substring 0 1 x) == "/") then
-          x
-        else
-          null;
+        if (isNull x) || ((builtins.substring 0 1 x) != "/") then
+          null else x;
     in map mkDir (lib.filter (x: x != null) [
       paths.projects
       paths.media
       paths.peaks
 
-      # If render path is relative, it's appended
-      # to the current project path.
       (keepOnlyAbs paths.renders)
     ]);
 
