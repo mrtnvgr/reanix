@@ -1,4 +1,4 @@
-{ mkBitfield, mkEnabledOption }:
+{ mkBitfield, mkEnabledOption, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
 

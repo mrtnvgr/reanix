@@ -1,4 +1,4 @@
-{ mkBitfield, mkEnabledOption }:
+{ mkBitfield, mkEnabledOption, ... }:
 { inputs, pkgs, config, lib, ... }: let
   mrtnvgr-lib = inputs.mrtnvgr.lib { inherit pkgs; };
   inherit (mrtnvgr-lib.strings) unalias;
