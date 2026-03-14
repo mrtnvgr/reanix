@@ -1,3 +1,4 @@
+_:
 { inputs, config, pkgs, lib, ... }: let
   mrtnvgr-lib = inputs.mrtnvgr.lib { inherit pkgs; };
   inherit (mrtnvgr-lib.strings) unalias;

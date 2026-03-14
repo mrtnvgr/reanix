@@ -1,3 +1,4 @@
+_:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
   paths = cfg.config.paths;

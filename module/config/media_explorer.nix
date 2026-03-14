@@ -1,3 +1,4 @@
+{ boolToInt, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
   mex = cfg.config.media_explorer;
@@ -13,7 +14,7 @@ in {
     programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
       ${lib.optionalString (mex.dock != null) ''
         [reaper_sexplorer]
-        docked=${mex.dock}
+        docked=${boolToInt mex.dock}
       ''}
     '';
   };

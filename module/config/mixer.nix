@@ -1,5 +1,7 @@
+{ boolToInt, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
+  mixer = cfg.config.mixer;
 in {
   options.programs.reanix.config.mixer = {
     dock = lib.mkOption {
@@ -10,9 +12,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (cfg.mixer.dock != null) ''
+      ${lib.optionalString (mixer.dock != null) ''
         [reaper]
-        mixwnd_dock=${cfg.mixer.dock}
+        mixwnd_dock=${boolToInt mixer.dock}
       ''}
     '';
   };

@@ -3,11 +3,11 @@
   cfg = config.programs.reanix;
 
   viewadvance = mkBitfield [
-    cfg.config .autoscroll_during_playback
-    cfg.config .scroll_track_view_while_recording
-    cfg.config .dont_autoscroll_view_when_viewing_other_parts
-    cfg.config .scroll_view_to_edit_cursor_on_stop
-    cfg.config .continuous_scrolling
+    cfg.config.autoscroll_during_playback
+    cfg.config.scroll_track_view_while_recording
+    cfg.config.dont_autoscroll_view_when_viewing_other_parts
+    cfg.config.scroll_view_to_edit_cursor_on_stop
+    cfg.config.continuous_scrolling
   ];
 in {
   options.programs.reanix.config  = {

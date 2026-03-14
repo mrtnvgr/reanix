@@ -8,8 +8,10 @@ let
       acc * 2 + (if x then 1 else 0)
     ) 0 (lib.reverseList list);
 
+  boolToInt = x: if x then "1" else "0";
+
   mk = x: import x {
-    inherit mkEnabledOption mkBitfield;
+    inherit mkEnabledOption mkBitfield boolToInt;
   };
 
 in {
@@ -19,7 +21,6 @@ in {
     ./itemicons.nix
     ./showpeaks.nix
     ./envlanes.nix
-  ] ++ [
     ./defvzoom.nix
     ./paths.nix
     ./mixer.nix
