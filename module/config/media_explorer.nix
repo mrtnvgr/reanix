@@ -4,8 +4,7 @@
   mex = cfg.config.media_explorer;
 in {
   options.programs.reanix.config.media_explorer = {
-    dock = mkNullyOption { type = lib.types.bool; };
-
+    dock       = mkNullyOption { type = lib.types.bool; };
     media.loop = mkNullyOption { type = lib.types.bool; };
   };
 

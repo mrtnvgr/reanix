@@ -29,35 +29,35 @@ in {
 
   options.programs.reanix.config = {
     item_icons = {
-      locked = mkEnabledOption "Locked";
-      not_locked = lib.mkEnableOption "Not locked";
+      locked        =     mkEnabledOption "Locked";
+      not_locked    = lib.mkEnableOption  "Not locked";
 
-      muted = mkEnabledOption "Muted";
-      not_muted = mkEnabledOption "Not muted";
+      muted         =     mkEnabledOption "Muted";
+      not_muted     =     mkEnabledOption "Not muted";
 
-      fx = mkEnabledOption "Per take FX";
-      no_fx = mkEnabledOption "No FX";
+      fx            =     mkEnabledOption "Per take FX";
+      no_fx         =     mkEnabledOption "No FX";
 
-      automation = mkEnabledOption "Automation envelopes";
-      no_automation = lib.mkEnableOption "No active automation envelopes";
+      automation    =     mkEnabledOption "Automation envelopes";
+      no_automation = lib.mkEnableOption  "No active automation envelopes";
 
-      notes = mkEnabledOption "Notes";
-      no_notes = lib.mkEnableOption "No notes";
+      notes         =     mkEnabledOption "Notes";
+      no_notes      = lib.mkEnableOption  "No notes";
 
       item_properties = {
-        regular = lib.mkEnableOption "Item properties";
-        resampled = mkEnabledOption "Item properties if resampled media";
-        phase_inverted = lib.mkEnableOption "Item properties if phase inverted";
+        regular        = lib.mkEnableOption  "Item properties";
+        resampled      =     mkEnabledOption "Item properties if resampled media";
+        phase_inverted = lib.mkEnableOption  "Item properties if phase inverted";
       };
 
-      grouped = mkEnabledOption "Grouped";
+      grouped     = mkEnabledOption "Grouped";
 
-      pooled = mkEnabledOption "Pooled MIDI/ARA";
+      pooled      = mkEnabledOption "Pooled MIDI/ARA";
 
       volume_knob = mkEnabledOption "Volume knob";
 
       item_timebase = {
-        normal = lib.mkEnableOption "Item timebase";
+        normal    = lib.mkEnableOption "Item timebase";
         overriden = lib.mkEnableOption "Item timebase if overriden for the track or media item";
       };
 

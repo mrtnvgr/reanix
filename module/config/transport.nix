@@ -13,10 +13,10 @@
   ];
 in {
   options.programs.reanix.config.transport = {
-    playrate.show = mkEnabledOption "Show playrate control in transport";
-    play_state.show = mkEnabledOption "Show play state as text in transport";
-    time_signature.show = mkEnabledOption "Show time signature in transport";
-    controls.center = lib.mkEnableOption "Center transport controls";
+    playrate.show       =     mkEnabledOption "Show playrate control in transport";
+    play_state.show     =     mkEnabledOption "Show play state as text in transport";
+    time_signature.show =     mkEnabledOption "Show time signature in transport";
+    controls.center     = lib.mkEnableOption  "Center transport controls";
   };
 
   config = lib.mkIf cfg.enable {

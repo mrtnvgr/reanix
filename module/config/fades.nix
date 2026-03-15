@@ -8,7 +8,7 @@ in {
   options.programs.reanix.config.fades = {
     default_length = mkNullyOption {
       type = lib.types.int;
-      description = "length of automatic fade-in/fade-out/xfades for new items (in ms)";
+      description = "Length of automatic fade-in/fade-out/xfades for new items (in ms)";
     };
   };
 

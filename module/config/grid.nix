@@ -6,7 +6,7 @@ in {
   options.programs.reanix.config.grid = {
     dotted = mkNullyOption {
       type = lib.types.bool;
-      description = "show dotted grid lines";
+      description = "Show grid lines dotted";
     };
   };
 
