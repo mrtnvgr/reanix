@@ -36,5 +36,6 @@ in {
     ./grid.nix
     ./fades.nix
     ./theme.nix
+    ./transport.nix
   ];
 }
