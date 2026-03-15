@@ -32,5 +32,6 @@ in {
     ./mixer.nix
     ./media_explorer.nix
     ./boot.nix
+    ./playback.nix
   ];
 }
