@@ -33,5 +33,6 @@ in {
     ./media_explorer.nix
     ./boot.nix
     ./playback.nix
+    ./grid.nix
   ];
 }
