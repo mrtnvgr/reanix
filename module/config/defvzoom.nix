@@ -1,4 +1,4 @@
-_:
+{ mkNullyOption, ... }:
 { inputs, config, pkgs, lib, ... }: let
   mrtnvgr-lib = inputs.mrtnvgr.lib { inherit pkgs; };
   inherit (mrtnvgr-lib.strings) unalias;
@@ -14,16 +14,17 @@ _:
   defvzoom = unalias aliases cfg.config.default_track_height;
 in {
   options.programs.reanix.config = {
-    default_track_height = lib.mkOption {
+    default_track_height = mkNullyOption {
       type = with lib.types; either (enum (lib.attrNames aliases)) int;
-      default = "medium";
     };
   };
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      defvzoom=${toString defvzoom}
+      ${lib.optionalString (defvzoom != null) ''
+        [reaper]
+        defvzoom=${toString defvzoom}
+      ''}
     '';
   };
 }

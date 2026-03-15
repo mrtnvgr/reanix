@@ -10,12 +10,18 @@ let
 
   boolToInt = x: if x then "1" else "0";
 
-  mk = x: import x {
-    inherit mkEnabledOption mkBitfield boolToInt;
+  mkNullyOption = x: lib.mkOption {
+    type = lib.types.nullOr x.type;
+    default = null;
+  };
+
+  mkModule = x: import x {
+    inherit mkEnabledOption mkBitfield;
+    inherit boolToInt mkNullyOption;
   };
 
 in {
-  imports = map (x: mk x) [
+  imports = map (x: mkModule x) [
     ./viewadvance.nix
     ./labelitems2.nix
     ./itemicons.nix

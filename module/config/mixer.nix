@@ -1,13 +1,10 @@
-{ boolToInt, ... }:
+{ boolToInt, mkNullyOption, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
   mixer = cfg.config.mixer;
 in {
   options.programs.reanix.config.mixer = {
-    dock = lib.mkOption {
-      type = with lib.types; nullOr bool;
-      default = null;
-    };
+    dock = mkNullyOption { type = lib.types.bool; };
   };
 
   config = lib.mkIf cfg.enable {

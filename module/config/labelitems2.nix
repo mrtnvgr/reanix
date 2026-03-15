@@ -1,4 +1,4 @@
-{ mkBitfield, mkEnabledOption, ... }:
+{ mkBitfield, mkEnabledOption, mkNullyOption, ... }:
 { inputs, pkgs, config, lib, ... }: let
   mrtnvgr-lib = inputs.mrtnvgr.lib { inherit pkgs; };
   inherit (mrtnvgr-lib.strings) unalias;
@@ -6,15 +6,15 @@
   cfg = config.programs.reanix;
 
   labelitems2 = mkBitfield ([
-    cfg.config .display_media_item_take_name
-    cfg.config .show_labels_for_items_when_item_edges_are_not_visible
-    cfg.config .display_media_item_pitch_playrate_if_set
-    cfg.config .draw_labels_above_the_item.enable
-    (!cfg.config .display_media_item_gain_if_set)
+    cfg.config.display_media_item_take_name
+    cfg.config.show_labels_for_items_when_item_edges_are_not_visible
+    cfg.config.display_media_item_pitch_playrate_if_set
+    cfg.config.draw_labels_above_the_item.enable
+    (!cfg.config.display_media_item_gain_if_set)
   ] ++ stillImageThumbnailDisplayMode ++ [
     false # ???
     true # ???
-    (!cfg.config .draw_selection_indicator_on_items)
+    (!cfg.config.draw_selection_indicator_on_items)
   ]);
 
   sitdmAliases = {
@@ -23,9 +23,9 @@
     "Full height" = [ true false false ];
     "Stretch image" = [ false false true ];
   };
-  stillImageThumbnailDisplayMode = unalias sitdmAliases cfg.config .still_image_thumbnail_display_mode;
+  stillImageThumbnailDisplayMode = unalias sitdmAliases cfg.config.still_image_thumbnail_display_mode;
 
-  labelHeight = cfg.config .draw_labels_above_the_item.whenHeightLessThan;
+  labelHeight = cfg.config.draw_labels_above_the_item.whenHeightLessThan;
 in {
   options.programs.reanix.config  = {
     display_media_item_take_name = mkEnabledOption "display media item take name";
@@ -34,10 +34,7 @@ in {
     draw_labels_above_the_item = {
       enable = mkEnabledOption "draw labels above the item when media item height is more than ... pixels";
 
-      whenHeightLessThan = lib.mkOption {
-        type = with lib.types; nullOr int;
-        default = null;
-      };
+      whenHeightLessThan = mkNullyOption { type = lib.types.int; };
     };
     display_media_item_gain_if_set = mkEnabledOption "display media item gain if set";
     still_image_thumbnail_display_mode = lib.mkOption {

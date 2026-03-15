@@ -1,13 +1,10 @@
-{ boolToInt, ... }:
+{ boolToInt, mkNullyOption, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
   mex = cfg.config.media_explorer;
 in {
   options.programs.reanix.config.media_explorer = {
-    dock = lib.mkOption {
-      type = with lib.types; nullOr bool;
-      default = null;
-    };
+    dock = mkNullyOption { type = lib.types.bool; };
   };
 
   config = lib.mkIf cfg.enable {

@@ -1,14 +1,11 @@
-_:
+{ mkNullyOption, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
   paths = cfg.config.paths;
 in {
   options.programs.reanix.config = {
     paths = let
-      pathOption = lib.mkOption {
-        type = with lib.types; nullOr singleLineStr;
-        default = null;
-      };
+      pathOption = mkNullyOption { type = lib.types.singleLineStr; };
     in {
       projects = pathOption;
       media = pathOption;
@@ -49,7 +46,7 @@ in {
 
       ${lib.optionalString (paths.peaks != null) ''
         [reaper]
-        altpeaks=5
+        altpeaks=5 # TODO: why this is here?
         altpeakspath=${paths.peaks}
       ''}
 
