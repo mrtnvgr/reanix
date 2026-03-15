@@ -34,5 +34,6 @@ in {
     ./boot.nix
     ./playback.nix
     ./grid.nix
+    ./fades.nix
   ];
 }
