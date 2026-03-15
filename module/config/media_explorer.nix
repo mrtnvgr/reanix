@@ -5,6 +5,8 @@
 in {
   options.programs.reanix.config.media_explorer = {
     dock = mkNullyOption { type = lib.types.bool; };
+
+    media.loop = mkNullyOption { type = lib.types.bool; };
   };
 
   config = lib.mkIf cfg.enable {
@@ -12,6 +14,11 @@ in {
       ${lib.optionalString (mex.dock != null) ''
         [reaper_sexplorer]
         docked=${boolToInt mex.dock}
+      ''}
+
+      ${lib.optionalString (mex.media.loop != null) ''
+        [reaper_sexplorer]
+        repeat=${boolToInt mex.media.loop}
       ''}
     '';
   };
