@@ -31,5 +31,6 @@ in {
     ./paths.nix
     ./mixer.nix
     ./media_explorer.nix
+    ./boot.nix
   ];
 }
