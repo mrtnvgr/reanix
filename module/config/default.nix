@@ -35,5 +35,6 @@ in {
     ./playback.nix
     ./grid.nix
     ./fades.nix
+    ./theme.nix
   ];
 }
