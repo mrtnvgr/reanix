@@ -37,5 +37,6 @@ in {
     ./fades.nix
     ./theme.nix
     ./transport.nix
+    ./zoom.nix
   ];
 }
