@@ -38,5 +38,6 @@ in {
     ./theme.nix
     ./transport.nix
     ./zoom.nix
+    ./tcpalign.nix
   ];
 }
