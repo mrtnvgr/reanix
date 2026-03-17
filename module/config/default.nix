@@ -40,5 +40,6 @@ in {
     ./zoom.nix
     ./tcpalign.nix
     ./loopnewitems.nix
+    ./recaddatloop.nix
   ];
 }
