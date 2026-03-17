@@ -39,5 +39,6 @@ in {
     ./transport.nix
     ./zoom.nix
     ./tcpalign.nix
+    ./loopnewitems.nix
   ];
 }
