@@ -45,7 +45,7 @@ let
   reaper-wrapped = pkgs.writeScriptBin "reaper" /* bash */ ''
     ${lib.concatStringsSep "\n" configApplyingScript}
 
-    cat ${pkgs.writeText "reaper-kb" (toINI cfg.extraConfig."reaper-kb.ini")} >> ~/.config/REAPER/reaper-kb.ini
+    cat ${pkgs.writeText "reaper-kb" cfg.extraConfig."reaper-kb.ini"} >> ~/.config/REAPER/reaper-kb.ini
 
     ${cfg.hooks.preRun}
 
@@ -61,7 +61,8 @@ in {
     };
 
     extraConfig = lib.mkOption {
-      type = with lib.types; attrsOf attrs;
+      # TODO: remove lines after reaper-kb fix
+      type = with lib.types; attrsOf (either attrs lines);
       default = { };
     };
 
