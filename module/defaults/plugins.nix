@@ -13,12 +13,11 @@
   cfg = config.programs.reanix;
 in {
   config = lib.mkIf cfg.defaults {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ; Plugin paths
-      [reaper]
-      vstpath=${vst_path}
-      clap_path_linux-x86_64=${clap_path}
-      lv2path_linux=${lv2_path}
-    '';
+    # TODO: convert to config
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.vstpath = lib.mkDefault vst_path;
+      reaper.clap_path_linux-x86_64 = lib.mkDefault clap_path;
+      reaper.lv2path_linux = lib.mkDefault lv2_path;
+    };
   };
 }

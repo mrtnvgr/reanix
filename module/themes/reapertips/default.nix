@@ -3,7 +3,7 @@
   package = pkgs.callPackage ./package.nix { };
 in {
   options.programs.reanix.themes.reapertips = {
-    enable = lib.mkEnableOption "REAPERTIPS theme";
+    enable = lib.mkEnableOption "Reapertips theme";
 
     undimmed = lib.mkOption {
       type = lib.types.bool;
