@@ -47,9 +47,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      tcpalign=${toString tcpalign}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.tcpalign = tcpalign;
+    };
   };
 }

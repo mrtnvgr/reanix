@@ -23,9 +23,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      envlanes=${toString envlanes}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.envlanes = envlanes;
+    };
   };
 }

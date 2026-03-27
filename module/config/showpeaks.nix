@@ -29,9 +29,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      showpeaks=${toString showpeaks}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.showpeaks = showpeaks;
+    };
   };
 }

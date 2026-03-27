@@ -24,16 +24,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (grid.dotted != null) ''
-        [reaper]
-        griddot=${boolToInt grid.dotted}
-      ''}
-
-      ${lib.optionalString (grid.z-layer != null) ''
-        [reaper]
-        gridinbg2=${unalias gridinbg2Aliases grid.z-layer}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.griddot = boolToInt grid.dotted;
+      reaper.gridinbg2 = unalias gridinbg2Aliases grid.z-layer;
+    };
   };
 }

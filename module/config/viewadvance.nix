@@ -19,9 +19,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      viewadvance=${toString viewadvance}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.viewadvance = viewadvance;
+    };
   };
 }

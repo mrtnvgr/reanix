@@ -20,11 +20,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (defvzoom != null) ''
-        [reaper]
-        defvzoom=${toString defvzoom}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.defvzoom = defvzoom;
+    };
   };
 }

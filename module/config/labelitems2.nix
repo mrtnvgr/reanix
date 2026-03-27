@@ -50,12 +50,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      labelitems2=${toString labelitems2}
-      ${lib.optionalString (labelHeight != null) ''
-        itemlabel_minheight=${toString labelHeight}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.labelitems2 = labelitems2;
+      reaper.itemlabel_minheight = labelHeight;
+    };
   };
 }

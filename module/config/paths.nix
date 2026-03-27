@@ -31,29 +31,15 @@ in {
       (keepOnlyAbs paths.renders)
     ]);
 
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (paths.projects != null) ''
-        ; Default project save directory
-        [reaper]
-        defsavepath=${paths.projects}
-      ''}
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.defsavepath = paths.projects;
 
-      ${lib.optionalString (paths.media != null) ''
-        ; Default media directory for unsaved projects
-        [reaper]
-        defrecpath=${paths.media}
-      ''}
+      reaper.defrecpath = paths.media;
 
-      ${lib.optionalString (paths.peaks != null) ''
-        [reaper]
-        altpeaks=5 # TODO: why this is here?
-        altpeakspath=${paths.peaks}
-      ''}
+      reaper.altpeaks = 5; # TODO: why this is here?
+      reaper.altpeakspath = paths.peaks;
 
-      ${lib.optionalString (paths.renders != null) ''
-        [reaper]
-        defrenderpath=${paths.renders}
-      ''}
-    '';
+      reaper.defrenderpath = paths.renders;
+    };
   };
 }

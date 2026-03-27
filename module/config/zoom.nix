@@ -21,11 +21,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (zoommode != null) ''
-        [reaper]
-        zoommode=${toString zoommode}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.zoommode = zoommode;
+    };
   };
 }

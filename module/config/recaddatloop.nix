@@ -38,9 +38,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      recaddatloop=${toString recaddatloop}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.recaddatloop = recaddatloop;
+    };
   };
 }

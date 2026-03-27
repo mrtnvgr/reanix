@@ -5,8 +5,10 @@ let
 
   cfg = config.programs.reanix;
 
+  toINI = attrs: lib.generators.toINI {} attrs;
+
   configApplyingScript = lib.mapAttrsToList (name: value: ''
-    ${margesimpson}/bin/margesimpson -t .config/REAPER/${name} ${pkgs.writeText "${name}-patches" value}
+    ${margesimpson}/bin/margesimpson -t .config/REAPER/${name} ${pkgs.writeText "${name}-patches" (toINI value)}
   '') (lib.removeAttrs cfg.extraConfig [ "reaper-kb.ini" ]);
 
   # TODO: https://github.com/NixOS/nixpkgs/issues/416829
@@ -43,7 +45,7 @@ let
   reaper-wrapped = pkgs.writeScriptBin "reaper" /* bash */ ''
     ${lib.concatStringsSep "\n" configApplyingScript}
 
-    cat ${pkgs.writeText "reaper-kb" cfg.extraConfig."reaper-kb.ini"} >> ~/.config/REAPER/reaper-kb.ini
+    cat ${pkgs.writeText "reaper-kb" (toINI cfg.extraConfig."reaper-kb.ini")} >> ~/.config/REAPER/reaper-kb.ini
 
     ${cfg.hooks.preRun}
 
@@ -59,7 +61,7 @@ in {
     };
 
     extraConfig = lib.mkOption {
-      type = with lib.types; attrsOf lines;
+      type = with lib.types; attrsOf attrs;
       default = { };
     };
 

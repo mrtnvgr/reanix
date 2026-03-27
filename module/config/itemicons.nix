@@ -1,7 +1,7 @@
 { mkEnabledOption, ... }:
 { config, lib, ... }: let
   cfg = config.programs.reanix;
-  opts = cfg.config.item_icons;
+  opts = cfg.config.item.icons;
 
   # itemicons = mkBitfield ([ ]);
 in {
@@ -28,7 +28,7 @@ in {
   # item timebase if overriden for the track or media item - off
 
   options.programs.reanix.config = {
-    item_icons = {
+    item.icons = {
       locked        =     mkEnabledOption "Locked";
       not_locked    = lib.mkEnableOption  "Not locked";
 
@@ -44,7 +44,7 @@ in {
       notes         =     mkEnabledOption "Notes";
       no_notes      = lib.mkEnableOption  "No notes";
 
-      item_properties = {
+      properties = {
         regular        = lib.mkEnableOption  "Item properties";
         resampled      =     mkEnabledOption "Item properties if resampled media";
         phase_inverted = lib.mkEnableOption  "Item properties if phase inverted";
@@ -56,7 +56,7 @@ in {
 
       volume_knob = mkEnabledOption "Volume knob";
 
-      item_timebase = {
+      timebase = {
         normal    = lib.mkEnableOption "Item timebase";
         overriden = lib.mkEnableOption "Item timebase if overriden for the track or media item";
       };
@@ -69,11 +69,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (opts.min_height != null) ''
-        [reaper]
-        itemicons_minheight=${toString opts.min_height}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.itemicons_minheight = opts.min_height;
+    };
   };
 }

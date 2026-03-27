@@ -8,11 +8,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (mixer.dock != null) ''
-        [reaper]
-        mixwnd_dock=${boolToInt mixer.dock}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper-ini" = {
+      reaper.mixwnd_dock = boolToInt mixer.dock;
+    };
   };
 }

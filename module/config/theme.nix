@@ -20,12 +20,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (cfg.config.theme.path != null) ''
-        ; Selected theme
-        [reaper]
-        lastthemefn5=${toString theme}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.lastthemefn5 = theme;
+    };
   };
 }

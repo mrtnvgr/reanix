@@ -11,12 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (playback.loop != null) ''
-        ; Repeat playback at end of project
-        [reaper]
-        stopprojlen=${boolToInt playback.loop}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.stopprojlen = boolToInt playback.loop;
+    };
   };
 }

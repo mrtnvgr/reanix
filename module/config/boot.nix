@@ -27,18 +27,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      ${lib.optionalString (boot.animation != null) ''
-        ; Boot animation
-        [reaper]
-        splashfast=${boolToInt boot.animation}
-      ''}
-
-      ${lib.optionalString (boot.project != null) ''
-        ; Open project at startup: ${boot.project}
-        [reaper]
-        loadlastproj=${unalias projectAliases boot.project}
-      ''}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.splashfast = boolToInt boot.animation;
+      reaper.loadlastproj = unalias projectAliases boot.project;
+    };
   };
 }

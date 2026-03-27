@@ -22,9 +22,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = /* dosini */ ''
-      [reaper]
-      loopnewitems=${toString loopnewitems}
-    '';
+    programs.reanix.extraConfig."reaper.ini" = {
+      reaper.loopnewitems = loopnewitems;
+    };
   };
 }
