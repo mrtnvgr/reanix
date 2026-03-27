@@ -21,7 +21,7 @@ in {
 
   config = lib.mkIf (cfg.enable && cfg.colors != []) {
     programs.reanix.extraConfig."reaper.ini" = {
-      custcolors = custColors;
+      reaper.custcolors = custColors;
     };
   };
 }

@@ -15,9 +15,9 @@ in {
   config = lib.mkIf cfg.defaults {
     # TODO: convert to config
     programs.reanix.extraConfig."reaper.ini" = {
-      reaper.vstpath = lib.mkDefault vst_path;
-      reaper.clap_path_linux-x86_64 = lib.mkDefault clap_path;
-      reaper.lv2path_linux = lib.mkDefault lv2_path;
+      reaper.vstpath = vst_path;
+      reaper.clap_path_linux-x86_64 = clap_path;
+      reaper.lv2path_linux = lv2_path;
     };
   };
 }

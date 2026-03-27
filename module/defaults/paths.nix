@@ -4,9 +4,9 @@
 in {
   config = lib.mkIf cfg.defaults {
     programs.reanix.config.paths = {
-      projects = lib.mkDefault "${home}/.local/REAPER/Projects";
-      media    = lib.mkDefault "${home}/.cache/REAPER/Media";
-      peaks    = lib.mkDefault "${home}/.cache/REAPER/Peaks";
+      projects = "${home}/.local/REAPER/Projects";
+      media    = "${home}/.cache/REAPER/Media";
+      peaks    = "${home}/.cache/REAPER/Peaks";
     };
   };
 }
