@@ -26,7 +26,7 @@ in {
     ./labelitems2.nix
     ./itemicons.nix
     ./showpeaks.nix
-    ./envlanes.nix
+    ./automation.nix
     ./defvzoom.nix
     ./paths.nix
     ./mixer.nix
