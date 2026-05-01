@@ -22,7 +22,14 @@ Import ReaNix home-manager module and use `programs.reanix`:
 ```nix
 home-manager.users.user = {
   imports = [ inputs.reanix.homeModules.default ];
-  programs.reanix.enable = true;
+
+  programs.reanix = {
+    enable = true;
+
+    # Useful settings for better experience
+    # (e.g. `turn off update checks`)
+    defaults = true;
+  };
 }
 ```
 
