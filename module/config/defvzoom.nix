@@ -1,4 +1,4 @@
-{ mkNullyOption, ... }:
+{ ... }:
 { inputs, config, pkgs, lib, ... }: let
   mrtnvgr-lib = inputs.mrtnvgr.lib { inherit pkgs; };
   inherit (mrtnvgr-lib.strings) unalias;
@@ -14,8 +14,9 @@
   defvzoom = unalias aliases cfg.config.default_track_height;
 in {
   options.programs.reanix.config = {
-    default_track_height = mkNullyOption {
+    default_track_height = lib.mkOption {
       type = with lib.types; either (enum (lib.attrNames aliases)) int;
+      default = "medium";
     };
   };
 
