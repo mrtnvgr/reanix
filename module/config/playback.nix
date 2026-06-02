@@ -12,7 +12,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = {
-      reaper.stopprojlen = boolToInt playback.loop;
+      reaper = lib.optionalAttrs (playback.loop != null) { stopprojlen = boolToInt playback.loop; };
     };
   };
 }

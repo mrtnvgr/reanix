@@ -9,7 +9,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper-ini" = {
-      reaper.mixwnd_dock = boolToInt mixer.dock;
+      reaper = lib.optionalAttrs (mixer.dock != null) { mixwnd_dock = boolToInt mixer.dock; };
     };
   };
 }

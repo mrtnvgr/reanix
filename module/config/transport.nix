@@ -35,9 +35,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini" = {
-      reaper.transflags = transflags;
-      reaper.transport_dock_pos = unalias positions cfg.config.transport.position;
-    };
+    programs.reanix.extraConfig."reaper.ini".reaper = {
+      transflags = transflags;
+    }
+    // (lib.optionalAttrs (cfg.config.transport.position != null)
+        { transport_dock_pos = unalias positions cfg.config.transport.position; });
   };
 }

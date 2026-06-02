@@ -31,15 +31,12 @@ in {
       (keepOnlyAbs paths.renders)
     ]);
 
-    programs.reanix.extraConfig."reaper.ini" = {
-      reaper.defsavepath = paths.projects;
-
-      reaper.defrecpath = paths.media;
-
-      reaper.altpeaks = 5; # TODO: why this is here?
-      reaper.altpeakspath = paths.peaks;
-
-      reaper.defrenderpath = paths.renders;
-    };
+    programs.reanix.extraConfig."reaper.ini".reaper = {
+      altpeaks = 5; # TODO: why this is here?
+    }
+    // (lib.optionalAttrs (paths.projects != null) { defsavepath = paths.projects; })
+    // (lib.optionalAttrs (paths.media != null) { defrecpath = paths.media; })
+    // (lib.optionalAttrs (paths.peaks != null) { altpeakspath = paths.peaks; })
+    // (lib.optionalAttrs (paths.renders != null) { defrenderpath = paths.renders; });
   };
 }

@@ -28,8 +28,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = {
-      reaper.splashfast = boolToInt boot.animation;
-      reaper.loadlastproj = unalias projectAliases boot.project;
+      reaper =
+        (lib.optionalAttrs (boot.animation != null) { splashfast = boolToInt boot.animation; })
+        // (lib.optionalAttrs (boot.project != null) { loadlastproj = unalias projectAliases boot.project; });
     };
   };
 }

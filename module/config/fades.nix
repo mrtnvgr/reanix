@@ -14,8 +14,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = {
-      reaper.deffadelen = intToMs fades.default_length;
-      reaper.defsplitxfadelen = intToMs fades.default_length;
+      reaper = (lib.optionalAttrs (fades.default_length != null) { deffadelen = intToMs fades.default_length;
+                                                                   defsplitxfadelen = intToMs fades.default_length; });
     };
   };
 }

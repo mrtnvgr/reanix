@@ -22,7 +22,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = {
-      reaper.zoommode = zoommode;
+      reaper = lib.optionalAttrs (zoommode != null) { zoommode = zoommode; };
     };
   };
 }

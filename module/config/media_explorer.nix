@@ -33,31 +33,29 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.reanix.extraConfig."reaper.ini".reaper_sexplorer = {
-      docked = boolToInt mex.dock;
-      repeat = boolToInt mex.media.loop;
-
-      col1  = mex.columns.file_size.enable;
-      col4  = mex.columns.title.enable;
-      col5  = mex.columns.artist.enable;
-      col6  = mex.columns.album.enable;
-      col7  = mex.columns.mod_date.enable;
-      col8  = mex.columns.genre.enable;
-      col9  = mex.columns.comment.enable;
-      col10 = mex.columns.description.enable;
-      col11 = mex.columns.bpm.enable;
-      col12 = mex.columns.key.enable;
-      col13 = mex.columns.custom_tags.enable;
-      col14 = mex.columns.favourite.enable;
-      col15 = mex.columns.temporary_mark.enable;
-      col16 = mex.columns.sample_rate.enable;
-      col17 = mex.columns.channels.enable;
-      col18 = mex.columns.start_offset.enable;
-      col19 = mex.columns.length.enable;
-      col20 = mex.columns.bitrate.enable;
-      col21 = mex.columns.peak_volume.enable;
-      col23 = mex.columns.loudness.enable;
-      col24 = mex.columns.image.enable;
-    };
+    programs.reanix.extraConfig."reaper.ini".reaper_sexplorer =
+      (lib.optionalAttrs (mex.dock != null) { docked = boolToInt mex.dock; })
+      // (lib.optionalAttrs (mex.media.loop != null) { repeat = boolToInt mex.media.loop; })
+      // (lib.optionalAttrs (mex.columns.file_size      != null) { col1  = mex.columns.file_size.enable; })
+      // (lib.optionalAttrs (mex.columns.title          != null) { col4  = mex.columns.title.enable; })
+      // (lib.optionalAttrs (mex.columns.artist         != null) { col5  = mex.columns.artist.enable; })
+      // (lib.optionalAttrs (mex.columns.album          != null) { col6  = mex.columns.album.enable; })
+      // (lib.optionalAttrs (mex.columns.mod_date       != null) { col7  = mex.columns.mod_date.enable; })
+      // (lib.optionalAttrs (mex.columns.genre          != null) { col8  = mex.columns.genre.enable; })
+      // (lib.optionalAttrs (mex.columns.comment        != null) { col9  = mex.columns.comment.enable; })
+      // (lib.optionalAttrs (mex.columns.description    != null) { col10 = mex.columns.description.enable; })
+      // (lib.optionalAttrs (mex.columns.bpm            != null) { col11 = mex.columns.bpm.enable; })
+      // (lib.optionalAttrs (mex.columns.key            != null) { col12 = mex.columns.key.enable; })
+      // (lib.optionalAttrs (mex.columns.custom_tags    != null) { col13 = mex.columns.custom_tags.enable; })
+      // (lib.optionalAttrs (mex.columns.favourite      != null) { col14 = mex.columns.favourite.enable; })
+      // (lib.optionalAttrs (mex.columns.temporary_mark != null) { col15 = mex.columns.temporary_mark.enable; })
+      // (lib.optionalAttrs (mex.columns.sample_rate    != null) { col16 = mex.columns.sample_rate.enable; })
+      // (lib.optionalAttrs (mex.columns.channels       != null) { col17 = mex.columns.channels.enable; })
+      // (lib.optionalAttrs (mex.columns.start_offset   != null) { col18 = mex.columns.start_offset.enable; })
+      // (lib.optionalAttrs (mex.columns.length         != null) { col19 = mex.columns.length.enable; })
+      // (lib.optionalAttrs (mex.columns.bitrate        != null) { col20 = mex.columns.bitrate.enable; })
+      // (lib.optionalAttrs (mex.columns.peak_volume    != null) { col21 = mex.columns.peak_volume.enable; })
+      // (lib.optionalAttrs (mex.columns.loudness       != null) { col23 = mex.columns.loudness.enable; })
+      // (lib.optionalAttrs (mex.columns.image          != null) { col24 = mex.columns.image.enable; });
   };
 }

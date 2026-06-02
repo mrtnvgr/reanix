@@ -21,7 +21,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.reanix.extraConfig."reaper.ini" = {
-      reaper.lastthemefn5 = theme;
+      reaper = lib.optionalAttrs (theme != null) { lastthemefn5 = theme; };
     };
   };
 }
