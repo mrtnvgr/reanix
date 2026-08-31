@@ -1,3 +1,11 @@
+# UNMAINTAINED
+
+I do not use this anymore, feel free to fork :)
+
+Thank you.
+
+<br><br><br><br>
+
 # ReaNix - REAPER configuration system for NixOS
 
 > [!warning]
